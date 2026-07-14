@@ -1984,7 +1984,7 @@ impl HondaGuiApp {
     fn create_new_bin_from_embedded_template(&mut self, template_name: &str, data: &[u8]) {
         if data.is_empty() {
             self.log
-                .push(format!("NEW BIN: embedded template {template_name} is empty"));
+                .push(format!("BASEMAP: embedded template {template_name} is empty"));
             return;
         }
 
@@ -2001,7 +2001,7 @@ impl HondaGuiApp {
         }
 
         self.log.push(format!(
-            "NEW BIN: template {} loaded in memory (not saved). Click SAVE BIN to choose file.",
+            "BASEMAP: template {} loaded in memory (not saved). Click SAVE BIN to choose file.",
             template_name
         ));
     }
@@ -2014,7 +2014,7 @@ impl HondaGuiApp {
         let mut open = self.show_new_bin_window;
         let mut selected_template: Option<(&'static str, &'static [u8])> = None;
 
-        egui::Window::new("NEW BIN - BASEMAP SELECTION")
+        egui::Window::new("BASEMAP SELECTION")
             .open(&mut open)
             .resizable(false)
             .collapsible(false)
@@ -2812,14 +2812,14 @@ impl HondaGuiApp {
             match fs::read(&self.selected_file) {
                 Ok(rom) => return Some(rom),
                 Err(e) => {
-                    self.log.push(format!("ROM TABLE VIEW error: {e}"));
+                    self.log.push(format!("FUEL TABLE VIEW error: {e}"));
                     return None;
                 }
             }
         }
 
         self.log
-            .push("ROM TABLE VIEW: load a BIN or read ROM data first".to_string());
+            .push("FUEL TABLE VIEW: load a BIN or read ROM data first".to_string());
         None
     }
 
@@ -2891,7 +2891,7 @@ impl HondaGuiApp {
         }
 
         let Some(rom) = self.last_read_rom.as_mut() else {
-            self.log.push("ROM TABLE %: load BIN or read ROM first".to_string());
+            self.log.push("FUEL TABLE %: load BIN or read ROM first".to_string());
             return;
         };
 
@@ -2912,7 +2912,7 @@ impl HondaGuiApp {
         let last_index =
             base + ((ROM_FUEL_TABLE_ROWS - 1) * ROM_FUEL_TABLE_ROW_STRIDE) + (ROM_FUEL_TABLE_COLS - 1);
         if rom.len() <= last_index {
-            self.log.push("ROM TABLE %: ROM too small for table".to_string());
+            self.log.push("FUEL TABLE %: ROM too small for table".to_string());
             return;
         }
 
@@ -2935,7 +2935,7 @@ impl HondaGuiApp {
         self.rom_hex_dump = Self::format_hex_dump(&rom_snapshot);
         self.refresh_tuning_values_from_rom(&rom_snapshot);
         self.log.push(format!(
-            "ROM TABLE {} {:+}% | R{}-R{} C{}-C{} | changed {} cell(s)",
+            "FUEL TABLE {} {:+}% | R{}-R{} C{}-C{} | changed {} cell(s)",
             kind.label(),
             pct,
             row_start,
@@ -2965,7 +2965,7 @@ impl HondaGuiApp {
         let values = match Self::rom_fuel_table_values(&rom, kind, &self.rom_table_column_multipliers) {
             Some(values) => values,
             None => {
-                self.log.push("ROM TABLE VIEW: ROM too small for selected table".to_string());
+                self.log.push("FUEL TABLE VIEW: ROM too small for selected table".to_string());
                 self.show_rom_table_window = false;
                 return;
             }
@@ -4086,13 +4086,13 @@ impl HondaGuiApp {
             .show(ctx, |ui| {
                 ui.horizontal_wrapped(|ui| {
                     if ui
-                        .selectable_label(self.live_tracking_map == RomEmbeddedView::Fuel, "ROM TABLE")
+                        .selectable_label(self.live_tracking_map == RomEmbeddedView::Fuel, "FUEL TABLE")
                         .clicked()
                     {
                         self.live_tracking_map = RomEmbeddedView::Fuel;
                     }
                     if ui
-                        .selectable_label(self.live_tracking_map == RomEmbeddedView::Ign, "ROM IGN TABLE")
+                        .selectable_label(self.live_tracking_map == RomEmbeddedView::Ign, "IGNITION TABLE")
                         .clicked()
                     {
                         self.live_tracking_map = RomEmbeddedView::Ign;
@@ -4221,7 +4221,7 @@ impl HondaGuiApp {
                                         }
                                         RomEmbeddedView::None => {
                                             self.log.push(
-                                                "LIVE TRACKING AFR MAP: select ROM TABLE or ROM IGN TABLE in LIVE TRACKING AFR".to_string(),
+                                                "LIVE TRACKING AFR MAP: select FUEL TABLE or IGN TABLE in LIVE TRACKING AFR".to_string(),
                                             );
                                         }
                                     }
@@ -4497,13 +4497,13 @@ impl HondaGuiApp {
             .show(ctx, |ui| {
                 ui.horizontal_wrapped(|ui| {
                     if ui
-                        .selectable_label(self.live_tracking_afr_map == RomEmbeddedView::Fuel, "ROM TABLE")
+                        .selectable_label(self.live_tracking_afr_map == RomEmbeddedView::Fuel, "FUEL TABLE")
                         .clicked()
                     {
                         self.live_tracking_afr_map = RomEmbeddedView::Fuel;
                     }
                     if ui
-                        .selectable_label(self.live_tracking_afr_map == RomEmbeddedView::Ign, "ROM IGN TABLE")
+                        .selectable_label(self.live_tracking_afr_map == RomEmbeddedView::Ign, "IGNITION TABLE")
                         .clicked()
                     {
                         self.live_tracking_afr_map = RomEmbeddedView::Ign;
@@ -6218,7 +6218,7 @@ impl eframe::App for HondaGuiApp {
                         .default_open(false)
                         .show(ui, |ui| {
                     ui.horizontal(|ui| {
-                        if ui.button("NEW BIN").clicked() {
+                        if ui.button("BASEMAP").clicked() {
                             self.show_new_bin_window = true;
                         }
                         if ui.button("OPEN BIN").clicked() {
