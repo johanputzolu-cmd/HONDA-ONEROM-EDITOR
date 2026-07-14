@@ -1,25 +1,32 @@
 # HONDA-ONEROM-EDITOR
 
-Ce repo contient:
-- le binaire Linux `onerom-honda-edition`
-- une copie autonome des sources OneROM necessaires au rebuild dans `onerom-source/`
+Version minimale publiee pour eviter les dossiers sensibles.
 
-## Rebuild local sans ouvrir le repo OneROM d'origine
+## Contenu
 
-```bash
-cd onerom-source/docs
-cargo build --release
-```
+- minimal-run/onerom-honda-edition
+	- binaire Linux x86_64 pret a executer
+- minimal-build/
+	- strict minimum des sources necessaires pour recompiler onerom-honda-edition
 
-Binaire produit:
+## Execution Linux directe
 
-```text
-onerom-source/docs/target/release/onerom-honda-edition
-```
+./minimal-run/onerom-honda-edition
 
-## Structure importante
+## Recompiler depuis les sources minimales
 
-- `onerom-source/docs/` : app editor GUI Rust (main.rs, Cargo.toml, assets)
-- `onerom-source/rust/` : crates Rust references par `docs/Cargo.toml`
+cargo build --release --manifest-path minimal-build/docs/Cargo.toml
 
-Les dossiers `target/` ne sont pas inclus dans `onerom-source/` pour garder le repo propre.
+Binaire genere:
+
+minimal-build/docs/target/release/onerom-honda-edition
+
+## Notes
+
+- Cette version retire le gros snapshot precedent.
+- Seuls les sous-dossiers Rust necessaires au build sont conserves:
+	- rust/cli
+	- rust/config
+	- rust/fw
+	- rust/gen
+	- rust/sdrr-fw-parser
