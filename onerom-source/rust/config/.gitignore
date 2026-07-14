@@ -1,3 +1,0 @@
-# Override repo level ignores
-!build
-Cargo.lock
