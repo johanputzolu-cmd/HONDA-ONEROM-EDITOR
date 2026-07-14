@@ -1,0 +1,253 @@
+CUT MAPPING TABLE (SESSION REFERENCE)
+
+Purpose
+- Reference table for launch cut behavior using ROM offsets 0x6125 and 0x6126.
+- Mapping below reflects the current interpretation validated during this session.
+
+Offsets
+- Byte A: 0x6125
+- Byte B: 0x6126
+
+Definition (session)
+- Cut pair (0x6125 / 0x6126) = fuel cut mapping reference.
+
+State Mapping (current)
+- 00 / 00 = fuel cut active + ign cut inactive
+- FF / FF = fuel cut inactive + ign cut active
+- FF / 00 = fuel cut active + ign cut active
+- 00 / FF = not observed yet (unknown)
+
+Observed Binaries
+- p28.bin                   -> 0x6125=00, 0x6126=00
+- p28igncut.bin             -> 0x6125=FF, 0x6126=FF
+- p28igncut100ms.bin        -> 0x6125=FF, 0x6126=FF
+- p28igncutetfuelcut.bin    -> 0x6125=FF, 0x6126=00
+- p30.bin                   -> 0x6125=00, 0x6126=00
+- p30igncut.bin             -> 0x6125=FF, 0x6126=FF
+- lyonnel 2.0 launch ok.bin -> 0x6125=FF, 0x6126=FF
+
+Timing Mapping (current)
+- Timing bytes: 0x61D8, 0x61E4, 0x61E5 (same value in validated bins)
+- 0x05 = 50 ms (lyonnel 2.0 launch ok.bin)
+- 0x07 = 70 ms (p28igncut.bin)
+- 0x0A = 100 ms (p28igncut100ms.bin)
+
+Notes
+- p28.bin vs p28igncut.bin differs by 2 bytes only: 0x6125 and 0x6126.
+- p30.bin vs p30igncut.bin differs by 2 bytes only: 0x6125 and 0x6126.
+- p28igncut.bin vs p28igncutetfuelcut.bin differs by 1 byte only: 0x6126.
+- p28igncut.bin vs p28igncut100ms.bin differs by 3 bytes: 0x61D8, 0x61E4, 0x61E5.
+- If needed, confirm the unknown state (00/FF) with a dedicated runtime test.
+
+VTEC NOVTEC Mapping Notes
+- p28.bin vs p28novtec.bin and p30.bin vs p30novtec.bin both differ by the same 4 bytes:
+	- 0x6120: 0x44 -> 0x43
+	- 0x61F2: 0xFF -> 0x00
+	- 0x6657: 0x52 -> 0x54
+	- 0x6659: 0x37 -> 0x33
+- Common "wiki" VTEC offsets checked during comparison remained unchanged in these custom AF 22 B6 bins.
+
+How to identify the real VTEC ON/OFF address (safe method)
+- Do not infer from multi-byte patch alone; isolate one byte at a time.
+- Build 4 test bins from the same base and modify only one candidate byte per bin:
+	- Test A: 0x6120 only
+	- Test B: 0x61F2 only
+	- Test C: 0x6657 only
+	- Test D: 0x6659 only
+- Flash one test at a time, then run same driving condition and monitor VTEC status.
+- The byte that consistently disables VTEC by itself is the primary VTEC switch for this ROM family.
+- Current working hypothesis: 0x61F2 is the strongest candidate.
+
+IACV NO-IACV Mapping Notes
+- p28.bin vs p28noiacv.bin differs by 1 byte only:
+	- 0x6116: 0x00 -> 0xFF
+- p30.bin vs p30noiacv.bin differs by 1 byte only:
+	- 0x6116: 0x00 -> 0xFF
+- Working mapping for this ROM family:
+	- 0x6116 = 0x00 -> IACV normal
+	- 0x6116 = 0xFF -> NO-IACV mode
+
+Validation summary (NO-IACV)
+- p28 checksum8 mod 256: 0x5E -> p28noiacv: 0x5D
+- p30 checksum8 mod 256: 0x3C -> p30noiacv: 0x3B
+
+LAUNCH Mapping Notes
+- p28.bin vs p28launch.bin differs by 1 byte only:
+	- 0x6152: 0x00 -> 0x80
+- p30.bin vs p30launch.bin differs by 1 byte only:
+	- 0x6152: 0x00 -> 0x80
+- Working mapping for this ROM family:
+	- 0x6152 = 0x00 -> launch inactive
+	- 0x6152 = 0x80 -> launch active
+
+Important user rule (session)
+- 0x6152 = 0x00 -> fuel cut active
+- Keep this rule as operational reference for current calibration workflow.
+
+Validation summary (LAUNCH)
+- p28 checksum8 mod 256: 0x5E -> p28launch: 0xDE
+- p30 checksum8 mod 256: 0x3C -> p30launch: 0xBC
+- p28launch and p30launch keep the same base-family delta as p28 and p30 (1491 bytes).
+
+LAUNCH + TPS Mapping Notes
+- p28launch.bin vs p28launchtps.bin differs by 2 bytes:
+	- 0x6155: 0x00 -> 0xFF
+	- 0x6158: 0x5F -> 0x5E
+- p30launch.bin vs p30lanchtps.bin differs by 2 bytes:
+	- 0x6155: 0x00 -> 0xFF
+	- 0x6158: 0x5F -> 0x5E
+- Working interpretation for this ROM family:
+	- 0x6152 controls launch ON/OFF
+	- 0x6155 and 0x6158 add/adjust TPS condition when launch is enabled
+
+Validation summary (LAUNCH + TPS)
+- p28launch checksum8 mod 256: 0xDE -> p28launchtps: 0xDC
+- p30launch checksum8 mod 256: 0xBC -> p30lanchtps: 0xBA
+- p28launchtps and p30lanchtps keep the same base-family delta as p28/p30 (1491 bytes).
+
+BLINK Mapping Notes (validated working)
+- Blink value offset in ROM image:
+	- 0x6020
+- In Ostrich logical addressing mode used by the GUI:
+	- base = 0x8000
+	- final target address = 0x8000 + 0x6020 = 0xE020
+- Working behavior already validated in session:
+	- pre-write read at 0xE020
+	- write patched ROM (persistent)
+	- post-write read at 0xE020
+	- value matches expected blink count when write is successful
+
+BLINK quick mapping
+- rom[0x6020] = blink count byte
+- 0xE020 (Ostrich logical address) = same blink count byte on target
+
+P28 VTEC Variant Summary (custom AF 22 B6 family)
+- Base reference: p28.bin
+- p285500-5700.bin
+	- identical to p28.bin (0 diff)
+- p28vtec6000.bin (5 diffs)
+	- 0x6120: 0x44 -> 0x43
+	- 0x6657: 0x52 -> 0x54
+	- 0x6658: 0xDB -> 0xD0
+	- 0x6659: 0x37 -> 0x33
+	- 0x665A: 0xD8 -> 0xE0
+- p28vtec5500.bin (4 diffs)
+	- 0x6120: 0x44 -> 0x43
+	- 0x6657: 0x52 -> 0x54
+	- 0x6658: 0xDB -> 0xD8
+	- 0x6659: 0x37 -> 0x33
+	- 0x665A unchanged (0xD8)
+- p28vtec5000.bin (4 diffs)
+	- 0x6120: 0x44 -> 0x43
+	- 0x6657: 0x52 -> 0x54
+	- 0x6659: 0x37 -> 0x33
+	- 0x665A: 0xD8 -> 0xD0
+	- 0x6658 unchanged (0xDB)
+- p28vtec4500.bin (5 diffs)
+	- 0x6120: 0x44 -> 0x43
+	- 0x6657: 0x52 -> 0x54
+	- 0x6658: 0xDB -> 0xC0
+	- 0x6659: 0x37 -> 0x33
+	- 0x665A: 0xD8 -> 0xC8
+- p28vtec4000.bin (5 diffs)
+	- 0x6120: 0x44 -> 0x43
+	- 0x6657: 0x52 -> 0x54
+	- 0x6658: 0xDB -> 0xC0
+	- 0x6659: 0x37 -> 0x33
+	- 0x665A: 0xD8 -> 0xC0
+
+Fuel Map Zones (session definitions)
+- Low cam fuel map (non-VTEC injection zone)
+	- Full table range: 0x6EAD..0x707E
+	- Geometry: 20 rows x 10 columns
+	- Row stride: 0x18
+	- Index formula:
+		- offset = 0x6EAD + row * 0x18 + col
+		- row = 0..19
+		- col = 0..9
+	- Confirmed corners:
+		- top-left = 0x6EAD
+		- top-right = 0x6EB6
+		- bottom-left = 0x7075
+		- bottom-right = 0x707E
+	- Confirmed by +5 table-shape variants:
+		- p28+5lowcam1erverhorizon.bin -> first horizontal row = 0x6EAD..0x6EB6
+		- p28+5lowcam1ervertical.bin -> first vertical column = 0x6EAD + n*0x18
+		- p28+5lowcamdernierhorizon.bin -> last horizontal row = 0x7075..0x707E
+		- p28+5lowcamderniervertical.bin -> last vertical column = 0x6EB6 + n*0x18
+	- Earlier whole-map confirmation:
+		- p28.bin -> p28+5.bin: 200 diffs concentrated in this table
+		- p30.bin -> p30+5.bin: 200 diffs concentrated in this table
+- High cam fuel map (VTEC injection zone)
+	- Full table range: 0x70A5..0x7276
+	- Geometry: 20 rows x 10 columns
+	- Row stride: 0x18
+	- Index formula:
+		- offset = 0x70A5 + row * 0x18 + col
+		- row = 0..19
+		- col = 0..9
+	- Confirmed corners:
+		- top-left = 0x70A5
+		- top-right = 0x70AE
+		- bottom-left = 0x726D
+		- bottom-right = 0x7276
+	- Confirmed by +5 VTEC table-shape variants:
+		- p28vtec+5lowcam1ervertical.bin -> first vertical column = 0x70A5 + n*0x18
+		- p28vtec+5lowcamdernierhorizon.bin -> last horizontal row = 0x726D..0x7276
+		- p28vtec+5lowcamderniervertical.bin -> last vertical column = 0x70AE + n*0x18
+	- Important naming caveat:
+		- p28vtec+5lowcam1erverhorizon.bin is not high cam
+		- it modifies the low-cam first horizontal row at 0x6EAD..0x6EB6
+	- Earlier whole-map confirmation:
+		- p28.bin -> p28+5vtec.bin: table diffs concentrated in this zone, with extra non-table diff(s) elsewhere
+		- p30.bin -> p30+5vtec.bin: table diffs concentrated in this zone, with extra non-table diff(s) elsewhere
+
+FAN CONTROL Mapping Notes (validated)
+- Activation byte offset:
+	- 0x616D
+	- 0xFF = fan control enabled
+	- 0x00 = fan control disabled
+	- Validation:
+		- p28.bin vs p28nofancontrol.bin differs by 1 byte only at 0x616D (FF -> 00)
+
+- Fan temperature value byte offset:
+	- 0x616E
+	- This byte stores the fan threshold value used by this ROM family.
+	- Validation with available variants:
+		- p28.bin: 0x1F
+		- p28fancontrol80.bin: 0x1F (identical to p28.bin)
+		- p28fancontrol87.bin: 0x22
+		- p28fancontrol84.bin: 0x24
+		- p28fancontrol20.bin: 0xA2
+
+- Quick rule for editing:
+	- Toggle fan control using 0x616D.
+	- Adjust fan threshold value using 0x616E.
+
+SHIFT LIGHT Mapping Notes (validated)
+- Activation byte offset:
+	- 0x6142
+	- 0x00 = shift light OFF
+	- 0xFF = shift light ON
+
+- Shift light threshold value offsets:
+	- 0x6144 (low byte)
+	- 0x6145 (high byte)
+	- Interpreted as one 16-bit value for shift light threshold.
+
+- Validation against p28.bin:
+	- p28shiftlighton.bin:
+		- 0x6142: 0x00 -> 0xFF
+	- p28shiftlighton6510.bin:
+		- 0x6142: 0x00 -> 0xFF
+		- 0x6144/0x6145: 0xEA/0x00 -> 0x20/0x01 (word 0x0120)
+	- p28shiftlighton7000.bin:
+		- 0x6142: 0x00 -> 0xFF
+		- 0x6144/0x6145: 0xEA/0x00 -> 0x0B/0x01 (word 0x010B)
+	- p28shiftlighton7500.bin:
+		- 0x6142: 0x00 -> 0xFF
+		- 0x6144/0x6145: 0xEA/0x00 -> 0xFA/0x00 (word 0x00FA)
+
+- Quick rule for editing:
+	- Toggle shift light ON/OFF using 0x6142.
+	- Adjust shift light threshold using 0x6144/0x6145.

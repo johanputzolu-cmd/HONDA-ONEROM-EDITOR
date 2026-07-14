@@ -1,0 +1,73 @@
+// Commits ONE physical 4 KB block. Returns true if more blocks remain to drain.
+// Per the comment block above, this treats the live image as an opaque physical
+// region (no logical->physical remap) and rewrites the whole image on any write.
+static bool ost_persist_commit(void) {
+    // Flash destination: the slot the active image was preloaded from at boot.
+    const sdrr_rom_set_t *rs = app_get_active_rom_set(&context);
+    if (rs == NULL || rs->data == NULL || rs->size == 0u) return false;
+    uint32_t flash_addr = (uint32_t)(uintptr_t)rs->data;   // XIP addr, 0x10xxxxxx
+    uint32_t size       = rs->size;
+
+    // Never touch the protected firmware/plugin region; require alignment.
+    if (flash_addr < FLASH_PROTECTED_END)        return false;
+    if ((flash_addr % FLASH_SECTOR_SIZE) != 0u)  return false;
+    if ((size % 256u) != 0u || size == 0u)       return false;  // whole pages only
+
+    // RAM source: the live (modified) image currently being served.
+    if (context.ora_lookup_fn == NULL) return false;
+    ora_get_active_ram_slot_fn_t get_active = context.ora_lookup_fn(ORA_ID_GET_ACTIVE_RAM_SLOT);
+    ora_get_ram_slot_info_fn_t   get_info   = context.ora_lookup_fn(ORA_ID_GET_RAM_SLOT_INFO);
+    if (get_active == NULL || get_info == NULL) return false;
+    uint8_t slot = 0;
+    if (get_active(&slot) != ORA_RESULT_OK) return false;
+    uint32_t ram_addr = 0u, ram_size = 0u;
+    if (get_info(slot, &ram_addr, &ram_size, NULL) != ORA_RESULT_OK) return false;
+    if (ram_addr == 0u || ram_size < size) return false;  // sanity
+
+    // Current physical block; if past the end, nothing more to do.
+    uint32_t off = ost_persist_phys_off;
+    if (off >= size) return false;
+
+    // Bootrom flash primitives.
+    ost_cif_fn cif = (ost_cif_fn)picoboot_lookup_boot_fn('I','F');
+    ost_exx_fn exx = (ost_exx_fn)picoboot_lookup_boot_fn('E','X');
+    ost_ers_fn ers = (ost_ers_fn)picoboot_lookup_boot_fn('R','E');
+    ost_prg_fn prg = (ost_prg_fn)picoboot_lookup_boot_fn('R','P');
+    ost_flc_fn flc = (ost_flc_fn)picoboot_lookup_boot_fn('F','C');
+    ost_sxm_fn sxm = (ost_sxm_fn)picoboot_lookup_boot_fn('X','M');
+    if (!cif || !exx || !ers || !prg || !flc || !sxm) return false;
+
+    uint32_t flash_offs = flash_addr - RP2350_FLASH_BASE;
+    uint8_t  clkdiv     = (uint8_t)(OST_XIP_QMI_M0_TIMING & 0xFFu);
+
+    // This physical block: erase 4 KB, program min(4 KB, remaining). size is a
+    // multiple of 256, so the tail program size is a whole number of pages.
+    uint32_t remain    = size - off;
+    uint32_t prog_size = (remain < OST_FLASH_SECTOR) ? remain : OST_FLASH_SECTOR;
+
+    // SKIP-IF-UNCHANGED: flash is memory-mapped (XIP) right now (we are NOT yet
+    // in the interrupts-off critical section), so the existing flash block is
+    // directly readable. Compare it byte-for-byte against the RAM block. If they
+    // are identical, this block needs no erase/program - skip the whole
+    // interrupts-off window for it. This is a PHYSICAL compare of the exact same
+    // verbatim regions the commit copies (RAM phys offset vs flash phys offset);
+    // it does NOT interpret the scrambled logical layout, so it cannot
+    // reintroduce the Rev G logical dirty-tracking corruption. Worst case (whole
+    // image changed) it behaves exactly as before, just with one 4 KB memcmp of
+    // overhead per block - negligible vs a ~60-90 ms erase.
+    const uint8_t *flash_blk = (const uint8_t *)(uintptr_t)(flash_addr + off);
+    const uint8_t *ram_blk   = (const uint8_t *)(uintptr_t)(ram_addr + off);
+    if (memcmp(flash_blk, ram_blk, prog_size) == 0) {
+        ost_persist_phys_off = off + OST_FLASH_SECTOR;     // advance, no flash op
+        return (ost_persist_phys_off < size);
+    }
+
+    ost_flash_commit_critical(cif, exx, ers, prg, flc, sxm,
+                              flash_offs + off,
+                              (const uint8_t *)(uintptr_t)(ram_addr + off),
+                              OST_FLASH_SECTOR,    // erase this one 4 KB block
+                              prog_size, clkdiv);
+
+    ost_persist_phys_off = off + OST_FLASH_SECTOR;     // advance cursor
+    return (ost_persist_phys_off < size);              // true => more blocks remain
+}

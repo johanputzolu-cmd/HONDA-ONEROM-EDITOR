@@ -1,0 +1,2181 @@
+{
+    "chip_types": {
+        "SystemPlugin": {
+            "description": "One ROM System Plugin",
+            "function": "Plugin",
+            "bit_modes": [],
+            "pins": 0,
+            "size": 65536,
+            "address": [],
+            "data": [],
+            "control": {},
+            "supported": "0.6.7"
+        },
+        "UserPlugin": {
+            "description": "One ROM User Plugin",
+            "function": "Plugin",
+            "bit_modes": [],
+            "pins": 0,
+            "size": 65536,
+            "address": [],
+            "data": [],
+            "control": {},
+            "supported": "0.6.7"
+        },
+        "PioPlugin": {
+            "description": "One ROM PIO Plugin",
+            "function": "Plugin",
+            "bit_modes": [],
+            "pins": 0,
+            "size": 65536,
+            "address": [],
+            "data": [],
+            "control": {}
+        },
+        "2316": {
+            "description": "2KB mask ROM with 3 configurable CS lines",
+            "function": "ROM",
+            "supported": "0.4.4",
+            "aliases": [
+                "9316"
+            ],
+            "bit_modes": [8],
+            "pins": 24,
+            "size": 2048,
+            "address": [
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                2,
+                1,
+                23,
+                22,
+                19
+            ],
+            "data": [
+                9,
+                10,
+                11,
+                13,
+                14,
+                15,
+                16,
+                17
+            ],
+            "control": {
+                "cs1": {
+                    "pin": 20,
+                    "type": "configurable"
+                },
+                "cs2": {
+                    "pin": 18,
+                    "type": "configurable"
+                },
+                "cs3": {
+                    "pin": 21,
+                    "type": "configurable"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 24,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 12,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "2332": {
+            "description": "4KB mask ROM with 2 configurable CS lines",
+            "function": "ROM",
+            "supported": "0.4.4",
+            "aliases": [
+                "9332",
+                "4732"
+            ],
+            "bit_modes": [8],
+            "pins": 24,
+            "size": 4096,
+            "address": [
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                2,
+                1,
+                23,
+                22,
+                19,
+                18
+            ],
+            "data": [
+                9,
+                10,
+                11,
+                13,
+                14,
+                15,
+                16,
+                17
+            ],
+            "control": {
+                "cs1": {
+                    "pin": 20,
+                    "type": "configurable"
+                },
+                "cs2": {
+                    "pin": 21,
+                    "type": "configurable"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 24,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 12,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "2364": {
+            "description": "8KB mask ROM with 1 configurable CS line",
+            "function": "ROM",
+            "supported": "0.4.4",
+            "aliases": [
+                "4764",
+                "MCM68764",
+                "MCM68A764",
+                "MCM68364",
+                "MCM68A364"
+            ],
+            "bit_modes": [8],
+            "pins": 24,
+            "size": 8192,
+            "address": [
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                2,
+                1,
+                23,
+                22,
+                19,
+                18,
+                21
+            ],
+            "data": [
+                9,
+                10,
+                11,
+                13,
+                14,
+                15,
+                16,
+                17
+            ],
+            "control": {
+                "cs1": {
+                    "pin": 20,
+                    "type": "configurable"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 24,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 12,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "23128": {
+            "description": "16KB mask ROM with 3 configurable CS lines",
+            "function": "ROM",
+            "supported": "0.5.8",
+            "bit_modes": [8],
+            "pins": 28,
+            "size": 16384,
+            "address": [
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                25,
+                24,
+                21,
+                23,
+                2,
+                26
+            ],
+            "data": [
+                11,
+                12,
+                13,
+                15,
+                16,
+                17,
+                18,
+                19
+            ],
+            "control": {
+                "cs1": {
+                    "pin": 20,
+                    "type": "configurable"
+                },
+                "cs2": {
+                    "pin": 22,
+                    "type": "configurable"
+                },
+                "cs3": {
+                    "pin": 27,
+                    "type": "configurable"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 28,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 14,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "23256": {
+            "description": "32KB mask ROM with 2 configurable CS lines",
+            "function": "ROM",
+            "supported": "0.5.8",
+            "bit_modes": [8],
+            "pins": 28,
+            "size": 32768,
+            "address": [
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                25,
+                24,
+                21,
+                23,
+                2,
+                26,
+                27
+            ],
+            "data": [
+                11,
+                12,
+                13,
+                15,
+                16,
+                17,
+                18,
+                19
+            ],
+            "control": {
+                "cs1": {
+                    "pin": 20,
+                    "type": "configurable"
+                },
+                "cs2": {
+                    "pin": 22,
+                    "type": "configurable"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 28,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 14,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "23QL384": {
+            "description": "A composite ROM type, serving a combined 23256 and 23128 for the Sinclair QL, with a single configured CS line and is de-selected when A14 & A15 are both high",
+            "function": "ROM",
+            "supported": "0.6.12",
+            "bit_modes": [8],
+            "pins": 28,
+            "size": 49152,
+            "address": [
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                25,
+                24,
+                21,
+                23,
+                2,
+                26,
+                27,
+                20
+            ],
+            "data": [
+                11,
+                12,
+                13,
+                15,
+                16,
+                17,
+                18,
+                19
+            ],
+            "control": {
+                "cs1": {
+                    "pin": 22,
+                    "type": "configurable"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 28,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 14,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "23QL512": {
+            "description": "A composite ROM type, serving two combined 23256s for the Sinclair QL, with a single configured CS line at pin 22, and A15 at pin 20 instead of pin 1",
+            "function": "ROM",
+            "supported": "0.6.11",
+            "bit_modes": [8],
+            "pins": 28,
+            "size": 65536,
+            "address": [
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                25,
+                24,
+                21,
+                23,
+                2,
+                26,
+                27,
+                20
+            ],
+            "data": [
+                11,
+                12,
+                13,
+                15,
+                16,
+                17,
+                18,
+                19
+            ],
+            "control": {
+                "cs1": {
+                    "pin": 22,
+                    "type": "configurable"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 28,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 14,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "23512": {
+            "description": "64KB mask ROM with 2 configurable CS lines",
+            "function": "ROM",
+            "supported": "0.5.8",
+            "bit_modes": [8],
+            "pins": 28,
+            "size": 65536,
+            "address": [
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                25,
+                24,
+                21,
+                23,
+                2,
+                26,
+                27,
+                1
+            ],
+            "data": [
+                11,
+                12,
+                13,
+                15,
+                16,
+                17,
+                18,
+                19
+            ],
+            "control": {
+                "cs1": {
+                    "pin": 20,
+                    "type": "configurable"
+                },
+                "cs2": {
+                    "pin": 22,
+                    "type": "configurable"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 28,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 14,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "231024": {
+            "description": "128KB mask ROM with 1 configurable CS line",
+            "function": "ROM",
+            "supported": "0.6.4",
+            "aliases": [
+                "TC531000",
+                "23C1000",
+                "23C1000A",
+                "MX23C1000"
+            ],
+            "bit_modes": [8],
+            "pins": 28,
+            "size": 131072,
+            "address": [
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                25,
+                24,
+                21,
+                23,
+                2,
+                26,
+                27,
+                1,
+                22
+            ],
+            "data": [
+                11,
+                12,
+                13,
+                15,
+                16,
+                17,
+                18,
+                19
+            ],
+            "control": {
+                "cs1": {
+                    "pin": 20,
+                    "type": "configurable"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 28,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 14,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "23C1010": {
+            "description": "128KB mask ROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.6.13",
+            "aliases": [],
+            "bit_modes": [8],
+            "pins": 32,
+            "size": 131072,
+            "address": [
+                12,
+                11,
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                27,
+                26,
+                23,
+                25,
+                4,
+                28,
+                29,
+                3,
+                2
+            ],
+            "data": [
+                13,
+                14,
+                15,
+                17,
+                18,
+                19,
+                20,
+                21
+            ],
+            "control": {
+                "ce": {
+                    "pin": 22,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 24,
+                    "type": "fixed_active_low"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 32,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 16,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "2704": {
+            "description": "512B EPROM with multiple supply voltages",
+            "function": "ROM",
+            "supported": "0.6.6",
+            "bit_modes": [8],
+            "pins": 24,
+            "size": 512,
+            "address": [
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                2,
+                1,
+                23
+            ],
+            "data": [
+                9,
+                10,
+                11,
+                13,
+                14,
+                15,
+                16,
+                17
+            ],
+            "control": {
+                "oe": {
+                    "pin": 20,
+                    "type": "fixed_active_low"
+                },
+                "ce": {
+                    "pin": 18,
+                    "type": "fixed_active_low"
+                }
+            },
+            "programming": {
+                "vpp": {
+                    "pin": 18,
+                    "read_state": "low"
+                },
+                "pe": {
+                    "pin": 20,
+                    "read_state": "low"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 24,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "VDD",
+                    "pin": 19,
+                    "voltage": "+12V"
+                },
+                {
+                    "name": "VBB",
+                    "pin": 21,
+                    "voltage": "-5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 12,
+                    "voltage": "0V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 22,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "2708": {
+            "description": "1KB EPROM with multiple supply voltages",
+            "function": "ROM",
+            "supported": "0.6.6",
+            "bit_modes": [8],
+            "pins": 24,
+            "size": 1024,
+            "address": [
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                2,
+                1,
+                23,
+                22
+            ],
+            "data": [
+                9,
+                10,
+                11,
+                13,
+                14,
+                15,
+                16,
+                17
+            ],
+            "control": {
+                "oe": {
+                    "pin": 20,
+                    "type": "fixed_active_low"
+                },
+                "ce": {
+                    "pin": 18,
+                    "type": "fixed_active_low"
+                }
+            },
+            "programming": {
+                "vpp": {
+                    "pin": 18,
+                    "read_state": "low"
+                },
+                "pe": {
+                    "pin": 20,
+                    "read_state": "low"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 24,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "VDD",
+                    "pin": 19,
+                    "voltage": "+12V"
+                },
+                {
+                    "name": "VBB",
+                    "pin": 21,
+                    "voltage": "-5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 12,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "2716": {
+            "description": "2KB EPROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.5.6",
+            "bit_modes": [8],
+            "pins": 24,
+            "size": 2048,
+            "address": [
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                2,
+                1,
+                23,
+                22,
+                19
+            ],
+            "data": [
+                9,
+                10,
+                11,
+                13,
+                14,
+                15,
+                16,
+                17
+            ],
+            "control": {
+                "ce": {
+                    "pin": 18,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 20,
+                    "type": "fixed_active_low"
+                }
+            },
+            "programming": {
+                "vpp": {
+                    "pin": 21,
+                    "read_state": "vcc"
+                },
+                "pe": {
+                    "pin": 20,
+                    "read_state": "low"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 24,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 12,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "2732": {
+            "description": "4KB EPROM with fixed active-low CE and shared OE/VPP",
+            "function": "ROM",
+            "supported": "0.5.6",
+            "aliases": [
+                "27C32"
+            ],
+            "bit_modes": [8],
+            "pins": 24,
+            "size": 4096,
+            "address": [
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                2,
+                1,
+                23,
+                22,
+                19,
+                21
+            ],
+            "data": [
+                9,
+                10,
+                11,
+                13,
+                14,
+                15,
+                16,
+                17
+            ],
+            "control": {
+                "ce": {
+                    "pin": 18,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 20,
+                    "type": "fixed_active_low"
+                }
+            },
+            "programming": {
+                "vpp": {
+                    "pin": 20,
+                    "read_state": "chip_select"
+                },
+                "pe": {
+                    "pin": 18,
+                    "read_state": "low"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 24,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 12,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "2764": {
+            "description": "8KB EPROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.5.8",
+            "aliases": [
+                "27C64",
+                "27LC64"
+            ],
+            "bit_modes": [8],
+            "pins": 28,
+            "size": 8192,
+            "address": [
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                25,
+                24,
+                21,
+                23,
+                2
+            ],
+            "data": [
+                11,
+                12,
+                13,
+                15,
+                16,
+                17,
+                18,
+                19
+            ],
+            "control": {
+                "ce": {
+                    "pin": 20,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 22,
+                    "type": "fixed_active_low"
+                }
+            },
+            "programming": {
+                "vpp": {
+                    "pin": 1,
+                    "read_state": "vcc"
+                },
+                "pgm": {
+                    "pin": 27,
+                    "read_state": "high"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 28,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 14,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "27128": {
+            "description": "16KB EPROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.5.8",
+            "aliases": [
+                "27C128",
+                "27LC128"
+            ],
+            "bit_modes": [8],
+            "pins": 28,
+            "size": 16384,
+            "address": [
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                25,
+                24,
+                21,
+                23,
+                2,
+                26
+            ],
+            "data": [
+                11,
+                12,
+                13,
+                15,
+                16,
+                17,
+                18,
+                19
+            ],
+            "control": {
+                "ce": {
+                    "pin": 20,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 22,
+                    "type": "fixed_active_low"
+                }
+            },
+            "programming": {
+                "vpp": {
+                    "pin": 1,
+                    "read_state": "vcc"
+                },
+                "pgm": {
+                    "pin": 27,
+                    "read_state": "high"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 28,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 14,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "27256": {
+            "description": "32KB EPROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.5.8",
+            "aliases": [
+                "27C256",
+                "27LC256",
+                "27SF256"
+            ],
+            "bit_modes": [8],
+            "pins": 28,
+            "size": 32768,
+            "address": [
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                25,
+                24,
+                21,
+                23,
+                2,
+                26,
+                27
+            ],
+            "data": [
+                11,
+                12,
+                13,
+                15,
+                16,
+                17,
+                18,
+                19
+            ],
+            "control": {
+                "ce": {
+                    "pin": 20,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 22,
+                    "type": "fixed_active_low"
+                }
+            },
+            "programming": {
+                "vpp": {
+                    "pin": 1,
+                    "read_state": "vcc"
+                },
+                "pe": {
+                    "pin": 22,
+                    "read_state": "low"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 28,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 14,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "27512": {
+            "description": "64KB EPROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.5.8",
+            "aliases": [
+                "27C512",
+                "27LC512",
+                "27SF512"
+            ],
+            "bit_modes": [8],
+            "pins": 28,
+            "size": 65536,
+            "address": [
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                25,
+                24,
+                21,
+                23,
+                2,
+                26,
+                27,
+                1
+            ],
+            "data": [
+                11,
+                12,
+                13,
+                15,
+                16,
+                17,
+                18,
+                19
+            ],
+            "control": {
+                "ce": {
+                    "pin": 20,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 22,
+                    "type": "fixed_active_low"
+                }
+            },
+            "programming": {
+                "vpp": {
+                    "pin": 22,
+                    "read_state": "vcc"
+                },
+                "pe": {
+                    "pin": 20,
+                    "read_state": "low"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 28,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 14,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "27C301": {
+            "description": "128KB EPROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.6.6",
+            "aliases": [
+                "27C1000",
+                "27C100"
+            ],
+            "bit_modes": [8],
+            "pins": 32,
+            "size": 131072,
+            "address": [
+                12,
+                11,
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                27,
+                26,
+                23,
+                25,
+                4,
+                28,
+                29,
+                3,
+                24
+            ],
+            "data": [
+                13,
+                14,
+                15,
+                17,
+                18,
+                19,
+                20,
+                21
+            ],
+            "control": {
+                "ce": {
+                    "pin": 22,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 2,
+                    "type": "fixed_active_low"
+                }
+            },
+            "programming": {
+                "vpp": {
+                    "pin": 1,
+                    "read_state": "x"
+                },
+                "pgm": {
+                    "pin": 31,
+                    "read_state": "x"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 32,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 16,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "23C1001": {
+            "description": "128KB mask programmed ROM with fixed active-low CE/OE, plus 2 programmable CS lines",
+            "function": "ROM",
+            "supported": "0.6.13",
+            "aliases": [
+                "D23C1001"
+            ],
+            "bit_modes": [8],
+            "pins": 32,
+            "size": 131072,
+            "address": [
+                12,
+                11,
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                27,
+                26,
+                23,
+                25,
+                4,
+                28,
+                29,
+                3,
+                2
+            ],
+            "data": [
+                13,
+                14,
+                15,
+                17,
+                18,
+                19,
+                20,
+                21
+            ],
+            "control": {
+                "ce": {
+                    "pin": 22,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 24,
+                    "type": "fixed_active_low"
+                },
+                "cs1": {
+                    "pin": 31,
+                    "type": "configurable"
+                },
+                "cs2": {
+                    "pin": 30,
+                    "type": "configurable"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 32,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 16,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "27C010": {
+            "description": "128KB EPROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.6.6",
+            "aliases": [
+                "27C1001",
+                "27C1000A",
+                "29F010",
+                "39SF010",
+                "SST39SF010"
+            ],
+            "bit_modes": [8],
+            "pins": 32,
+            "size": 131072,
+            "address": [
+                12,
+                11,
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                27,
+                26,
+                23,
+                25,
+                4,
+                28,
+                29,
+                3,
+                2
+            ],
+            "data": [
+                13,
+                14,
+                15,
+                17,
+                18,
+                19,
+                20,
+                21
+            ],
+            "control": {
+                "ce": {
+                    "pin": 22,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 24,
+                    "type": "fixed_active_low"
+                }
+            },
+            "programming": {
+                "vpp": {
+                    "pin": 1,
+                    "read_state": "x"
+                },
+                "pgm": {
+                    "pin": 31,
+                    "read_state": "x"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 32,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 16,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "27C020": {
+            "description": "256KB EPROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.6.6",
+            "aliases": [
+                "27C2001",
+                "39SF020",
+                "29F020",
+                "SST39SF020"
+            ],
+            "bit_modes": [8],
+            "pins": 32,
+            "size": 262144,
+            "address": [
+                12,
+                11,
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                27,
+                26,
+                23,
+                25,
+                4,
+                28,
+                29,
+                3,
+                2,
+                30
+            ],
+            "data": [
+                13,
+                14,
+                15,
+                17,
+                18,
+                19,
+                20,
+                21
+            ],
+            "control": {
+                "ce": {
+                    "pin": 22,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 24,
+                    "type": "fixed_active_low"
+                }
+            },
+            "programming": {
+                "vpp": {
+                    "pin": 1,
+                    "read_state": "x"
+                },
+                "pgm": {
+                    "pin": 31,
+                    "read_state": "x"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 32,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 16,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "27C040": {
+            "description": "512KB EPROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.6.6",
+            "aliases": [
+                "27C4001"
+            ],
+            "bit_modes": [8],
+            "pins": 32,
+            "size": 524288,
+            "address": [
+                12,
+                11,
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                27,
+                26,
+                23,
+                25,
+                4,
+                28,
+                29,
+                3,
+                2,
+                30,
+                31
+            ],
+            "data": [
+                13,
+                14,
+                15,
+                17,
+                18,
+                19,
+                20,
+                21
+            ],
+            "control": {
+                "ce": {
+                    "pin": 22,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 24,
+                    "type": "fixed_active_low"
+                }
+            },
+            "programming": {
+                "vpp": {
+                    "pin": 1,
+                    "read_state": "x"
+                },
+                "pgm": {
+                    "pin": 22,
+                    "read_state": "chip_select"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 32,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 16,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "SST39SF040": {
+            "description": "512KB flash with fixed active-low CE/OE and different pinout to 27C040",
+            "supported": "0.6.13",
+            "function": "ROM",
+            "aliases": [
+                "39SF040",
+                "29F040"
+            ],
+            "bit_modes": [8],
+            "pins": 32,
+            "size": 524288,
+            "address": [
+                12,
+                11,
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                27,
+                26,
+                23,
+                25,
+                4,
+                28,
+                29,
+                3,
+                2,
+                30,
+                1
+            ],
+            "data": [
+                13,
+                14,
+                15,
+                17,
+                18,
+                19,
+                20,
+                21
+            ],
+            "control": {
+                "ce": {
+                    "pin": 22,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 24,
+                    "type": "fixed_active_low"
+                },
+                "write": {
+                    "pin": 31,
+                    "type": "fixed_active_low"
+                }
+            },
+            "programming": {
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 32,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 16,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "27C080": {
+            "description": "1MB EPROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.6.8",
+            "aliases": [
+                "27C801"
+            ],
+            "bit_modes": [8],
+            "pins": 32,
+            "size": 1048576,
+            "address": [
+                12,
+                11,
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                27,
+                26,
+                23,
+                25,
+                4,
+                28,
+                29,
+                3,
+                2,
+                30,
+                31,
+                1
+            ],
+            "data": [
+                13,
+                14,
+                15,
+                17,
+                18,
+                19,
+                20,
+                21
+            ],
+            "control": {
+                "ce": {
+                    "pin": 22,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 24,
+                    "type": "fixed_active_low"
+                }
+            },
+            "programming": {
+                "vpp": {
+                    "pin": 24,
+                    "read_state": "chip_select"
+                },
+                "pgm": {
+                    "pin": 22,
+                    "read_state": "chip_select"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 32,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 16,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "27C200" : {
+            "description": "0.25MB mask programmed EPROM with fixed active-low CE/OE",
+            "notes": "It's unclear whether 27C200 was ever used as a moniker for this ROM type, but I'm assuming it was.",
+            "function": "ROM",
+            "supported": "0.6.13",
+            "aliases": [
+                "HN62402"
+            ],
+            "bit_modes": [8, 16],
+            "pins": 40,
+            "size": 262144,
+            "address": [
+                29,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                2,
+                40,
+                39,
+                38,
+                37,
+                36,
+                35,
+                34,
+                33,
+                32
+            ],
+            "data": [
+                13,
+                15,
+                17,
+                19,
+                22,
+                24,
+                26,
+                28,
+                14,
+                16,
+                18,
+                20,
+                23,
+                25,
+                27,
+                29
+            ],
+            "control": {
+                "ce": {
+                    "pin": 10,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 12,
+                    "type": "fixed_active_low"
+                },
+                "byte": {
+                    "pin": 31,
+                    "type": "fixed_active_low"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 21,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 11,
+                    "voltage": "0V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 30,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "27C400" : {
+            "description": "0.5MB EPROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.6.5",
+            "aliases": [
+                "AT27C400",
+                "M27C400",
+                "23C4100",
+                "MX23C4100",
+                "TCS534200",
+                "27C4100",
+                "MX27C4100",
+                "HN62404",
+                "HN62424",
+                "MB834200"
+            ],
+            "bit_modes": [8, 16],
+            "pins": 40,
+            "size": 524288,
+            "address": [
+                29,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                2,
+                40,
+                39,
+                38,
+                37,
+                36,
+                35,
+                34,
+                33,
+                32,
+                1
+            ],
+            "data": [
+                13,
+                15,
+                17,
+                19,
+                22,
+                24,
+                26,
+                28,
+                14,
+                16,
+                18,
+                20,
+                23,
+                25,
+                27,
+                29
+            ],
+            "control": {
+                "ce": {
+                    "pin": 10,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 12,
+                    "type": "fixed_active_low"
+                },
+                "byte": {
+                    "pin": 31,
+                    "type": "fixed_active_low"
+                }
+            },
+            "programming": {
+                "vpp": {
+                    "pin": 31,
+                    "read_state": "word_size"
+                },
+                "pgm": {
+                    "pin": 10,
+                    "read_state": "chip_select"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 21,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 11,
+                    "voltage": "0V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 30,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "28C16": {
+            "description": "2KB EEPROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.6.8",
+            "aliases": [],
+            "bit_modes": [8],
+            "pins": 24,
+            "size": 2048,
+            "address": [
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                2,
+                1,
+                23,
+                22,
+                19
+            ],
+            "data": [
+                9,
+                10,
+                11,
+                13,
+                14,
+                15,
+                16,
+                17
+            ],
+            "control": {
+                "ce": {
+                    "pin": 18,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 20,
+                    "type": "fixed_active_low"
+                },
+                "write": {
+                    "pin": 21,
+                    "type": "fixed_active_low"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 24,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 12,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "28C64": {
+            "description": "8KB EEPROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.6.8",
+            "aliases": [],
+            "bit_modes": [8],
+            "pins": 28,
+            "size": 8192,
+            "address": [
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                25,
+                24,
+                21,
+                23,
+                2
+            ],
+            "data": [
+                11,
+                12,
+                13,
+                15,
+                16,
+                17,
+                18,
+                19
+            ],
+            "control": {
+                "ce": {
+                    "pin": 20,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 22,
+                    "type": "fixed_active_low"
+                },
+                "write": {
+                    "pin": 27,
+                    "type": "fixed_active_low"
+                },
+                "busy": {
+                    "pin": 1,
+                    "type": "fixed_active_low"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 28,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 14,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "28C256": {
+            "description": "32KB EEPROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.6.8",
+            "aliases": [],
+            "bit_modes": [8],
+            "pins": 28,
+            "size": 32768,
+            "address": [
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                25,
+                24,
+                21,
+                23,
+                2,
+                26,
+                1
+            ],
+            "data": [
+                11,
+                12,
+                13,
+                15,
+                16,
+                17,
+                18,
+                19
+            ],
+            "control": {
+                "ce": {
+                    "pin": 20,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 22,
+                    "type": "fixed_active_low"
+                },
+                "write": {
+                    "pin": 27,
+                    "type": "fixed_active_low"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 28,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 14,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "28C512": {
+            "description": "64KB EEPROM with fixed active-low CE/OE",
+            "function": "ROM",
+            "supported": "0.6.8",
+            "aliases": [],
+            "bit_modes": [8],
+            "pins": 32,
+            "size": 65536,
+            "address": [
+                12,
+                11,
+                10,
+                9,
+                8,
+                7,
+                6,
+                5,
+                27,
+                26,
+                23,
+                25,
+                4,
+                28,
+                29,
+                3
+            ],
+            "data": [
+                13,
+                14,
+                15,
+                17,
+                18,
+                19,
+                20,
+                21
+            ],
+            "control": {
+                "ce": {
+                    "pin": 22,
+                    "type": "fixed_active_low"
+                },
+                "oe": {
+                    "pin": 24,
+                    "type": "fixed_active_low"
+                },
+                "write": {
+                    "pin": 30,
+                    "type": "fixed_active_low"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 32,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 16,
+                    "voltage": "0V"
+                }
+            ]
+        },
+        "6116": {
+            "description": "2KB (2048 x 8-bit) Static RAM with fixed active-low CE/OE/WE",
+            "function": "RAM",
+            "supported": "0.6.2",
+            "aliases": [
+                "2016"
+            ],
+            "bit_modes": [8],
+            "pins": 24,
+            "size": 2048,
+            "address": [
+                8,
+                7,
+                6,
+                5,
+                4,
+                3,
+                2,
+                1,
+                23,
+                22,
+                19
+            ],
+            "data": [
+                9,
+                10,
+                11,
+                13,
+                14,
+                15,
+                16,
+                17
+            ],
+            "control": {
+                "oe": {
+                    "pin": 20,
+                    "type": "fixed_active_low"
+                },
+                "ce": {
+                    "pin": 18,
+                    "type": "fixed_active_low"
+                },
+                "write": {
+                    "pin": 21,
+                    "type": "fixed_active_low"
+                }
+            },
+            "power": [
+                {
+                    "name": "VCC",
+                    "pin": 24,
+                    "voltage": "+5V"
+                },
+                {
+                    "name": "GND",
+                    "pin": 12,
+                    "voltage": "0V"
+                }
+            ]
+        }
+    }
+}
