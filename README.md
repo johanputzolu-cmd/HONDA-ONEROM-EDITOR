@@ -21,6 +21,30 @@ Binaire genere:
 
 minimal-build/docs/target/release/onerom-honda-edition
 
+## Generer le .exe Windows
+
+Script inclus:
+
+scripts/build-windows-exe.sh
+
+Il fait automatiquement:
+- installation de la target Rust Windows GNU (via rustup)
+- build release de l'app pour `x86_64-pc-windows-gnu`
+- copie du binaire final vers `minimal-run/onerom-honda-edition.exe`
+
+Pre-requis Linux (Ubuntu/Debian):
+
+sudo apt update
+sudo apt install -y mingw-w64
+
+Execution:
+
+./scripts/build-windows-exe.sh
+
+Resultat:
+
+minimal-run/onerom-honda-edition.exe
+
 ## Notes
 
 - Cette version retire le gros snapshot precedent.
