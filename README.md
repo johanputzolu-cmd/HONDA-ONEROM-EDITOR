@@ -31,6 +31,7 @@ Il fait automatiquement:
 - installation de la target Rust Windows GNU (via rustup)
 - build release de l'app pour `x86_64-pc-windows-gnu`
 - copie du binaire final vers `minimal-run/onerom-honda-edition.exe`
+- copie des DLL runtime MinGW dans `minimal-run/` (double-clic direct sous Windows)
 
 Pre-requis Linux (Ubuntu/Debian):
 
@@ -44,6 +45,10 @@ Execution:
 Resultat:
 
 minimal-run/onerom-honda-edition.exe
+
+Pour lancer sur Windows:
+- ouvrir le dossier `minimal-run`
+- double-cliquer `onerom-honda-edition.exe`
 
 ## Notes
 
