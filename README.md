@@ -1,6 +1,6 @@
 # HONDA-ONEROM-EDITOR
 
-Version minimale publiee pour eviter les dossiers sensibles.
+Version minimale 
 
 ## Contenu
 
